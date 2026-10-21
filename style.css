@@ -1,0 +1,173 @@
+/* Global color system */
+:root {
+    --bg: #07110B;
+    --surface: #0D1F12;
+    --green: #65FF83;
+    --green-soft: #A5FFB5;
+    --border: #193D25;
+    --text: #C6E8CC;
+}
+
+/* Entire website */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--green);
+    font-family: "Courier New", monospace;
+}
+
+/* Header and navigation */
+header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    color: var(--green);
+    text-shadow: 0 0 12px #65FF8340;
+}
+
+nav a {
+    color: var(--green-soft);
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+nav a:hover {
+    color: white;
+    text-shadow: 0 0 10px var(--green);
+}
+
+/* Main content */
+main {
+    padding: 40px;
+}
+
+h1, h2, h3 {
+    color: var(--green);
+}
+
+p {
+    color: var(--text);
+    line-height: 1.7;
+}
+
+/* Cards */
+.card, .about-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 25px;
+    transition:
+        border-color 0.3s,
+        box-shadow 0.3s,
+        transform 0.3s;
+}
+
+.card:hover, .about-card:hover {
+    border-color: var(--green);
+    box-shadow: 0 0 18px #65FF8318;
+    transform: translateY(-5px);
+}
+
+/* Buttons */
+button {
+    background: transparent;
+    color: var(--green);
+    border: 1px solid var(--green);
+    padding: 12px 22px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+button:hover {
+    background: var(--green);
+    color: var(--bg);
+}
+
+/* Footer */
+footer {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 20px;
+}
+
+/* Mobile navigation and layout */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 0 8px;
+    }
+
+    main {
+        padding: 24px 16px;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
+
+body {
+    font-family: 'VT323', monospace;
+    background: #07110B;
+    color: #65FF83;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+h1, h2, h3 {
+    font-family: 'Press Start 2P', monospace;
+    color: #65FF83;
+    line-height: 1.8;
+}
+
+p, nav a, button {
+    font-family: 'VT323', monospace;
+}
+
+nav a {
+    font-size: 25px;
+    text-transform: uppercase;
+}
+
+/* Terminal typing cursor */
+.typing::after {
+    content: "█";
+    display: inline-block;
+    margin-left: 4px;
+    animation: cursorBlink 0.8s steps(1) infinite;
+}
+
+@keyframes cursorBlink {
+    50% {
+        opacity: 0;
+    }
+}

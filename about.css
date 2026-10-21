@@ -1,0 +1,53 @@
+.about-page {
+    max-width: 1000px;
+    margin: auto;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.about-page h2 {
+    font-size: 40px;
+}
+
+.intro {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+
+/* Cards */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.about-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: left;
+
+    transition: transform 0.3s ease;
+}
+
+
+/* Simple hover animation */
+
+.about-card:hover {
+    transform: translateY(-8px);
+}
+
+
+/* Smaller screens */
+
+@media (max-width: 700px) {
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
