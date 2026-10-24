@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080b0a">
+
+    <title>HOME // SYSTEM ONLINE</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="allspark.css">
+
+    <!-- Load Three.js as a browser module -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.module.js"
+        }
+    }
+    </script>
+
+    <!-- Animation library -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+    <!-- Our 3D scene and interactions -->
+    <script type="module" src="allspark.js"></script>
+</head>
+
+<body>
+
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <header class="site-header">
+
+        <a class="wordmark" href="home.html">
+            A / S <span>—</span> 01
+        </a>
+
+        <nav aria-label="Main navigation">
+            <button class="nav-link active" data-section="home">HOME</button>
+            <button class="nav-link" data-section="identity">IDENTITY</button>
+            <button class="nav-link" data-section="archive">ARCHIVE</button>
+            <button class="nav-link" data-section="systems">SYSTEMS</button>
+        </nav>
+
+        <div class="header-status">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+        </div>
+
+    </header>
+
+    <main class="hero">
+
+        <section class="intro-panel" aria-live="polite">
+
+            <p class="eyebrow">
+                <span class="tiny-mark"></span>
+                PERSONAL INTERFACE // 001
+            </p>
+
+            <h1 id="hero-title">
+                AN INTERFACE<br>
+                FROM ANOTHER<br>
+                WORLD.
+            </h1>
+
+            <div class="rule"></div>
+
+            <p id="hero-description" class="body-copy">
+                A DIGITAL SPACE FOR PROJECTS, EXPERIMENTS,
+                AND SYSTEMS IN PROGRESS.
+            </p>
+
+            <div class="terminal">
+
+                <div class="terminal-top">
+                    <span>SYS://TERMINAL</span>
+                    <span>READY</span>
+                </div>
+
+                <p id="terminal-line">
+                    SELECT A SECTION TO INITIATE TRANSFORMATION.
+                </p>
+
+                <span class="terminal-cursor" aria-hidden="true"></span>
+
+            </div>
+
+            <div class="hero-actions">
+
+                <button class="primary-action" data-section="archive">
+                    OPEN ARCHIVE <span>↗</span>
+                </button>
+
+                <span class="micro-copy">
+                    BUILD 001. // EXPERIMENTAL INTERFACE
+                </span>
+
+            </div>
+
+        </section>
+
+        <section class="artifact-stage" aria-label="Interactive mechanical artifact">
+
+            <div class="stage-corner corner-tl">ARTIFACT 01</div>
+            <div class="stage-corner corner-tr">3D / INTERACTIVE</div>
+
+            <div id="artifact-canvas" class="artifact-canvas"></div>
+
+            <div class="stage-caption">
+                <span class="caption-line"></span>
+                <span id="artifact-caption">DORMANT CONFIGURATION</span>
+            </div>
+
+            <div class="stage-corner corner-bl">MECHANICAL STUDY</div>
+            <div class="stage-corner corner-br">X / Y / Z</div>
+
+            <div class="energy-ring ring-one"></div>
+            <div class="energy-ring ring-two"></div>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+
+        <span>© 2026 // PERSONAL SYSTEM</span>
+
+        <span>
+            DESIGNED TO TRANSFORM <b>◆</b>
+        </span>
+
+        <span class="footer-state">
+            <span class="status-dot"></span>
+            ALL SYSTEMS NOMINAL
+        </span>
+
+    </footer>
+
+</body>
+</html>

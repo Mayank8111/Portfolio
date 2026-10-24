@@ -1,4 +1,9 @@
-/* Global color system */
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
+
+/* =================================
+   1. COLOR SYSTEM
+================================= */
+
 :root {
     --bg: #07110B;
     --surface: #0D1F12;
@@ -8,7 +13,6 @@
     --text: #C6E8CC;
 }
 
-/* Entire website */
 * {
     box-sizing: border-box;
 }
@@ -21,76 +25,164 @@ body {
     margin: 0;
     background: var(--bg);
     color: var(--green);
-    font-family: "Courier New", monospace;
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    letter-spacing: 0.4px;
 }
 
-/* Header and navigation */
+
+/* =================================
+   2. HEADINGS AND TEXT
+================================= */
+
+h1, h2, h3 {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--green);
+    font-weight: normal;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+h1 {
+    font-size: 14px;
+}
+
+h2 {
+    font-size: 12px;
+}
+
+h3 {
+    font-size: 10px;
+}
+
+p {
+    color: var(--text);
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+
+/* =================================
+   3. HEADER AND NAVIGATION
+================================= */
+
 header {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    padding: 20px 5%;
+    padding: 16px 5%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
 }
 
 header h1 {
-    color: var(--green);
-    text-shadow: 0 0 12px #65FF8340;
+    margin: 0;
+    text-shadow: 0 0 8px #65FF8330;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
 }
 
 nav a {
     color: var(--green-soft);
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+    text-transform: uppercase;
     text-decoration: none;
-    margin-left: 20px;
+    margin: 0;
+
     transition: color 0.2s, text-shadow 0.2s;
 }
 
 nav a:hover {
     color: white;
-    text-shadow: 0 0 10px var(--green);
+    text-shadow: 0 0 8px var(--green);
 }
 
-/* Main content */
+
+/* =================================
+   4. MAIN CONTENT
+================================= */
+
 main {
-    padding: 40px;
+    padding: 32px;
 }
 
-h1, h2, h3 {
-    color: var(--green);
+main h2 {
+    margin-top: 0;
 }
 
-p {
-    color: var(--text);
-    line-height: 1.7;
-}
-
-/* Cards */
-.card, .about-card {
+.hero {
+    text-align: center;
+    padding: 45px 20px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 25px;
+    border-radius: 4px;
+}
+
+
+/* =================================
+   5. CARDS
+================================= */
+
+.content {
+    margin-top: 32px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.card,
+.about-card {
+    min-width: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px;
+
     transition:
         border-color 0.3s,
         box-shadow 0.3s,
         transform 0.3s;
 }
 
-.card:hover, .about-card:hover {
-    border-color: var(--green);
-    box-shadow: 0 0 18px #65FF8318;
-    transform: translateY(-5px);
+.card h3,
+.about-card h3 {
+    margin-top: 0;
 }
 
-/* Buttons */
+.card:hover,
+.about-card:hover {
+    border-color: var(--green);
+    box-shadow: 0 0 14px #65FF8318;
+    transform: translateY(-4px);
+}
+
+
+/* =================================
+   6. BUTTONS
+================================= */
+
 button {
     background: transparent;
     color: var(--green);
     border: 1px solid var(--green);
-    padding: 12px 22px;
-    font-family: inherit;
+    border-radius: 2px;
+    padding: 8px 16px;
+
+    font-family: 'VT323', monospace;
+    font-size: 20px;
     cursor: pointer;
+
     transition: background 0.2s, color 0.2s;
 }
 
@@ -99,66 +191,52 @@ button:hover {
     color: var(--bg);
 }
 
-/* Footer */
+
+/* =================================
+   7. ABOUT PAGE
+================================= */
+
+.about-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.about-page h2 {
+    font-size: 14px;
+}
+
+.about-page .intro {
+    margin-bottom: 32px;
+}
+
+.about-card {
+    text-align: left;
+}
+
+
+/* =================================
+   8. FOOTER
+================================= */
+
 footer {
     border-top: 1px solid var(--border);
     text-align: center;
-    padding: 20px;
+    padding: 16px;
+    margin-top: 32px;
 }
 
-/* Mobile navigation and layout */
-@media (max-width: 600px) {
-    header {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    nav a {
-        margin: 0 8px;
-    }
-
-    main {
-        padding: 24px 16px;
-    }
-}
-
-/* Respect reduced-motion preferences */
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-    }
+footer p {
+    margin: 0;
+    font-size: 18px;
 }
 
 
+/* =================================
+   9. RETRO TYPING CURSOR
+================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
-
-body {
-    font-family: 'VT323', monospace;
-    background: #07110B;
-    color: #65FF83;
-    font-size: 24px;
-    letter-spacing: 1px;
-}
-
-h1, h2, h3 {
-    font-family: 'Press Start 2P', monospace;
-    color: #65FF83;
-    line-height: 1.8;
-}
-
-p, nav a, button {
-    font-family: 'VT323', monospace;
-}
-
-nav a {
-    font-size: 25px;
-    text-transform: uppercase;
-}
-
-/* Terminal typing cursor */
 .typing::after {
     content: "█";
     display: inline-block;
@@ -169,5 +247,71 @@ nav a {
 @keyframes cursorBlink {
     50% {
         opacity: 0;
+    }
+}
+
+
+/* =================================
+   10. MOBILE LAYOUT
+================================= */
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 14px;
+    }
+
+    nav a {
+        font-size: 20px;
+    }
+
+    main {
+        padding: 20px 16px;
+    }
+
+    .hero {
+        padding: 32px 14px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .about-page {
+        padding: 28px 8px;
+    }
+
+    h1 {
+        font-size: 12px;
+    }
+
+    h2 {
+        font-size: 10px;
+    }
+
+    h3 {
+        font-size: 9px;
+    }
+}
+
+
+/* =================================
+   11. ACCESSIBILITY
+================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
     }
 }

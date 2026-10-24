@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Structure 001</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap');
+
+:root {
+    --void: #050a07;
+    --metal: #111a14;
+    --green: #65ff83;
+    --muted: #75947c;
+    --edge: #294331;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: var(--void);
+    color: var(--green);
+    font-family: 'VT323', monospace;
+    font-size: 22px;
+}
+
+button {
+    font: inherit;
+}
+
+#structure {
+    position: relative;
+    min-height: 100vh;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 50% 45%,
+            #14251a 0%, #08100b 48%, #030604 100%);
+}
+
+/* Organic metal surface */
+#structure::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: .45;
+    background:
+        repeating-linear-gradient(
+            112deg,
+            transparent 0 80px,
+            #526b5710 81px,
+            transparent 83px 140px
+        ),
+        radial-gradient(
+            ellipse at 15% 20%,
+            #617b5a18,
+            transparent 45%
+        );
+}
+
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 5%;
+    border-bottom: 1px solid var(--edge);
+    background: linear-gradient(180deg, #111a14, #080e0a);
+    box-shadow: 0 5px 30px #0008;
+}
+
+.brand {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.status {
+    color: var(--muted);
+    font-size: 18px;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+}
+
+nav button {
+    color: var(--green);
+    background: transparent;
+    border: 0;
+    padding: 8px 0;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+nav button:focus-visible {
+    outline: 1px solid var(--green);
+    outline-offset: 5px;
+}
+
+/* Main interface */
+main {
+    width: min(900px, 100%);
+    margin: auto;
+    padding: 70px 24px 100px;
+}
+
+.eyebrow {
+    color: var(--muted);
+    letter-spacing: 2px;
+}
+
+h1, h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(12px, 2vw, 17px);
+    line-height: 2;
+    font-weight: normal;
+}
+
+.intro {
+    max-width: 540px;
+    color: #b1c9b5;
+    line-height: 1.5;
+}
+
+.terminal {
+    margin-top: 38px;
+    padding: 22px;
+    border: 1px solid var(--edge);
+    background: #070d09;
+    box-shadow:
+        inset 0 0 35px #0009,
+        0 12px 35px #0006;
+}
+
+.terminal p {
+    margin: 8px 0;
+}
+
+.dim {
+    color: var(--muted);
+}
+
+/* Permanent command-line cursor */
+.cursor {
+    display: inline-block;
+    color: var(--green);
+    animation: blink 1s steps(1, end) infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Metallic navigation controls */
+.access {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.access button {
+    position: relative;
+    overflow: hidden;
+    padding: 14px 18px;
+    color: var(--green);
+    border: 1px solid #425849;
+    background:
+        linear-gradient(135deg, #344238 0%, #131c16 28%,
+            #26332a 48%, #0a100c 75%, #202b22 100%);
+    box-shadow:
+        inset 0 1px 1px #c2d2c333,
+        inset 0 -3px 8px #000b,
+        0 4px 10px #0008;
+    cursor: pointer;
+}
+
+/* No hover movement or hover-triggered animation */
+.access button:focus-visible {
+    outline: 1px solid var(--green);
+    outline-offset: 4px;
+}
+
+/* Transformation overlay */
+#transition {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    visibility: hidden;
+    overflow: hidden;
+    perspective: 1000px;
+    background: #030604;
+}
+
+#transition.active {
+    visibility: visible;
+}
+
+/* The growing aperture */
+.aperture {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    transform: translate(-50%, -50%);
+    background: #65ff83;
+    box-shadow: 0 0 35px #65ff8380;
+    opacity: 0;
+}
+
+#transition.active .aperture {
+    animation: aperture-open 1.8s ease-in forwards;
+}
+
+@keyframes aperture-open {
+    0% {
+        width: 8px;
+        height: 8px;
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    100% {
+        width: 160vmax;
+        height: 160vmax;
+        opacity: 0;
+    }
+}
+
+/* Four banks of armor panels */
+.armor {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 3px;
+    padding: 3px;
+    transform-style: preserve-3d;
+}
+
+.panel {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #3c5542;
+    background:
+        linear-gradient(135deg,
+            #354238 0%,
+            #19231c 12%,
+            #0b120d 30%,
+            #26332a 48%,
+            #101811 63%,
+            #354237 78%,
+            #0a100c 100%);
+    box-shadow:
+        inset 0 1px 2px #b4c8b420,
+        inset 0 -12px 25px #000b,
+        0 0 12px #000;
+    transform: translate3d(0, 0, 0) rotateX(0) rotateY(0);
+}
+
+/* Beveled, irregular-looking metallic insets */
+.panel::before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border: 1px solid #71837430;
+    clip-path: polygon(
+        0 0, 85% 0, 100% 18%,
+        100% 100%, 15% 100%, 0 80%
+    );
+    background:
+        linear-gradient(145deg, #b2c2b10b, transparent 40%),
+        linear-gradient(315deg, #0008, transparent 55%);
+}
+
+.panel::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 20%,
+        #a8c6a812 45%,
+        transparent 60%
+    );
+}
+
+#transition.active .panel {
+    animation: panel-fold 1.65s cubic-bezier(.65, 0, .25, 1) forwards;
+    animation-delay: var(--delay);
+}
+
+@keyframes panel-fold {
+    0% {
+        transform: translate3d(0, 0, 0) rotateX(0) rotateY(0);
+    }
+    30% {
+        border-color: #65ff83;
+    }
+    100% {
+        transform:
+            translate3d(var(--dx), var(--dy), 250px)
+            rotateX(var(--rx)) rotateY(var(--ry));
+        opacity: .05;
+    }
+}
+
+/* New content revealed after transformation */
+#destination {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    display: none;
+    overflow: auto;
+    padding: 10vh 8vw;
+    background:
+        radial-gradient(ellipse at center, #14251a, #050a07 75%);
+}
+
+#destination.visible {
+    display: block;
+}
+
+#destination h2 {
+    max-width: 700px;
+}
+
+#destination .return {
+    margin-top: 25px;
+    padding: 10px 16px;
+    color: var(--green);
+    background: #101a13;
+    border: 1px solid var(--edge);
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 18px;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    main {
+        padding: 45px 18px;
+    }
+
+    .armor {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cursor {
+        animation: none;
+    }
+
+    #transition.active .panel,
+    #transition.active .aperture {
+        animation-duration: .01ms;
+    }
+}
+</style>
+</head>
+
+<body>
+<div id="structure">
+    <header>
+        <div>
+            <div class="brand">STRUCTURE_001</div>
+            <div class="status">EXPLORATION SYSTEM</div>
+        </div>
+
+        <nav aria-label="Main navigation">
+            <button data-page="home">Home</button>
+            <button data-page="about">About</button>
+            <button data-page="projects">Projects</button>
+        </nav>
+    </header>
+
+    <main>
+        <div class="eyebrow">UNKNOWN SYSTEM // 001</div>
+        <h1>AN UNIDENTIFIED STRUCTURE</h1>
+
+        <p class="intro">
+            A machine waiting to be explored.
+            Its architecture is unfamiliar. Its purpose remains unknown.
+        </p>
+
+        <div class="terminal">
+            <p class="dim">SYSTEM STATUS: ONLINE</p>
+            <p id="message">AWAITING EXPLORER INPUT</p>
+            <p>COMMAND: <span class="cursor">█</span></p>
+        </div>
+
+        <div class="access">
+            <button data-page="about">OPEN IDENTITY</button>
+            <button data-page="projects">OPEN ARCHIVE</button>
+        </div>
+    </main>
+</div>
+
+<div id="transition" aria-hidden="true">
+    <div class="aperture"></div>
+    <div class="armor" id="armor"></div>
+</div>
+
+<section id="destination" aria-live="polite">
+    <div class="eyebrow" id="page-label">ACCESS GRANTED</div>
+    <h2 id="page-title">SYSTEM OPENED</h2>
+    <p id="page-description"></p>
+    <button class="return" id="return-home">RETURN TO HOME</button>
+    <p>AWAITING COMMAND <span class="cursor">█</span></p>
+</section>
+
+<script>
+const transition = document.querySelector("#transition");
+const armor = document.querySelector("#armor");
+const destination = document.querySelector("#destination");
+const structure = document.querySelector("#structure");
+const message = document.querySelector("#message");
+
+const pages = {
+    home: {
+        label: "ROOT SYSTEM",
+        title: "STRUCTURE RESTORED",
+        description: "The machine has returned to its original configuration."
+    },
+    about: {
+        label: "IDENTITY ARCHIVE // OPEN",
+        title: "ABOUT THE EXPLORER",
+        description: "Your personal introduction will live here."
+    },
+    projects: {
+        label: "PROJECT ARCHIVE // OPEN",
+        title: "CONSTRUCTED SYSTEMS",
+        description: "Your projects and experiments will live here."
+    }
+};
+
+/* Build a grid of metallic panels */
+for (let i = 0; i < 16; i++) {
+    const panel = document.createElement("div");
+    panel.className = "panel";
+
+    const col = i % 4;
+    const row = Math.floor(i / 4);
+
+    panel.style.setProperty("--delay", `${(row + col) * 0.025}s`);
+    panel.style.setProperty("--dx", `${(col - 1.5) * 110}vw`);
+    panel.style.setProperty("--dy", `${(row - 1.5) * 110}vh`);
+    panel.style.setProperty("--rx", `${(row % 2 ? 1 : -1) * 65}deg`);
+    panel.style.setProperty("--ry", `${(col % 2 ? 1 : -1) * 70}deg`);
+
+    armor.appendChild(panel);
+}
+
+let busy = false;
+let currentPage = "home";
+
+function typeText(element, text, speed = 45) {
+    return new Promise(resolve => {
+        let index = 0;
+        element.textContent = "";
+
+        function next() {
+            if (index >= text.length) {
+                resolve();
+                return;
+            }
+
+            element.textContent += text[index++];
+            setTimeout(next, speed);
+        }
+
+        next();
+    });
+}
+
+async function navigate(page) {
+    if (busy || !pages[page] || page === currentPage) return;
+
+    busy = true;
+
+    const info = pages[page];
+
+    /* Phase 1: clicked control's border lights up */
+    const clicked = document.activeElement;
+    if (clicked && clicked.matches("button")) {
+        clicked.style.borderColor = "#65ff83";
+        clicked.style.boxShadow =
+            "inset 0 0 12px #65ff8330, 0 0 12px #65ff8330";
+    }
+
+    message.textContent = "AUTHORIZING TRANSFORMATION...";
+
+    await new Promise(resolve => setTimeout(resolve, 750));
+
+    /* Phase 2: aperture opens and the panels reconfigure */
+    transition.classList.add("active");
+
+    await new Promise(resolve => setTimeout(resolve, 1700));
+
+    /* Phase 3: reveal destination */
+    structure.style.display = "none";
+    transition.classList.remove("active");
+    destination.classList.add("visible");
+
+    document.querySelector("#page-label").textContent = info.label;
+    document.querySelector("#page-title").textContent = "";
+    document.querySelector("#page-description").textContent = "";
+
+    await typeText(document.querySelector("#page-title"), info.title, 65);
+    await typeText(document.querySelector("#page-description"), info.description, 35);
+
+    currentPage = page;
+    busy = false;
+
+    if (clicked && clicked.matches("button")) {
+        clicked.style.borderColor = "";
+        clicked.style.boxShadow = "";
+    }
+}
+
+document.querySelectorAll("[data-page]").forEach(button => {
+    button.addEventListener("click", () => navigate(button.dataset.page));
+});
+
+document.querySelector("#return-home").addEventListener("click", () => {
+    if (busy) return;
+
+    destination.classList.remove("visible");
+    structure.style.display = "";
+    currentPage = "home";
+
+    message.textContent = "SYSTEM RESTORED";
+    window.scrollTo({ top: 0, behavior: "auto" });
+});
+</script>
+</body>
+</html>
